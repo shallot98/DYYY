@@ -2833,6 +2833,12 @@ static AWEIMReusableCommonCell *currentCell;
         [self removeFromSuperview];
         return;
     }
+
+    if (DYYYGetBool(@"DYYYBottomSearchTransparent")) {
+        self.alpha = 0.0;
+    } else {
+        self.alpha = 1.0;
+    }
 }
 
 %end
