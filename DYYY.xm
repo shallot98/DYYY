@@ -2835,8 +2835,24 @@ static AWEIMReusableCommonCell *currentCell;
     }
 
     if (DYYYGetBool(@"DYYYBottomSearchTransparent")) {
-        self.alpha = 0.0;
-    } else {
+        // 遍历子视图，找到背景视图并设置为透明
+        for (UIView *subview in self.subviews) {
+            // 设置所有非文本类子视图的背景为透明
+            if (![subview isKindOfClass:[UILabel class]]) {
+                subview.backgroundColor = [UIColor clearColor];
+                subview.alpha = 1.0;
+                
+                // 递归处理子视图的子视图
+                for (UIView *subSubview in subview.subviews) {
+                    if (![subSubview isKindOfClass:[UILabel class]]) {
+                        subSubview.backgroundColor = [UIColor clearColor];
+                    }
+                }
+            }
+        }
+        
+        // 设置自身背景为透明，但保持视图可见以显示文本
+        self.backgroundColor = [UIColor clearColor];
         self.alpha = 1.0;
     }
 }
