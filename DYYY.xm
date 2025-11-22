@@ -2836,6 +2836,20 @@ static AWEIMReusableCommonCell *currentCell;
         return;
     }
     %orig;
+
+    // 设置热点模糊视图背景为透明
+    self.backgroundColor = [UIColor clearColor];
+
+    // 遍历所有子视图，将背景设置为透明
+    for (UIView *subview in self.subviews) {
+        if ([subview isKindOfClass:[UIView class]]) {
+            subview.backgroundColor = [UIColor clearColor];
+        }
+        // 如果是 UIVisualEffectView，也设置为透明
+        if ([subview isKindOfClass:[UIVisualEffectView class]]) {
+            subview.alpha = 0;
+        }
+    }
 }
 %end
 
@@ -2846,6 +2860,16 @@ static AWEIMReusableCommonCell *currentCell;
         return;
     }
     %orig;
+
+    // 设置热搜方框背景为透明
+    self.backgroundColor = [UIColor clearColor];
+
+    // 遍历所有子视图，将背景设置为透明
+    for (UIView *subview in self.subviews) {
+        if ([subview isKindOfClass:[UIView class]]) {
+            subview.backgroundColor = [UIColor clearColor];
+        }
+    }
 }
 %end
 
@@ -3179,6 +3203,16 @@ static AWEIMReusableCommonCell *currentCell;
     if (DYYYGetBool(@"DYYYHideHotspot")) {
         [self removeFromSuperview];
         return;
+    }
+
+    // 设置热点方框背景为透明
+    self.backgroundColor = [UIColor clearColor];
+
+    // 遍历所有子视图，将背景设置为透明
+    for (UIView *subview in self.subviews) {
+        if ([subview isKindOfClass:[UIView class]]) {
+            subview.backgroundColor = [UIColor clearColor];
+        }
     }
 }
 
