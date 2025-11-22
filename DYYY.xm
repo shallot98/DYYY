@@ -2595,6 +2595,14 @@ static AWEIMReusableCommonCell *currentCell;
         %orig(color);
     }
 }
+
+- (void)addSubview:(UIView *)view {
+    %orig;
+    if (!DYYYGetBool(@"DYYYHideBottomRelated")) {
+        // 新添加的子视图也要立即设置透明
+        [self makeAllSubviewsTransparentRecursively:view];
+    }
+}
 %end
 
 %hook AWEFeedRelatedSearchTipView
@@ -2648,6 +2656,14 @@ static AWEIMReusableCommonCell *currentCell;
         %orig([UIColor clearColor]);
     } else {
         %orig(color);
+    }
+}
+
+- (void)addSubview:(UIView *)view {
+    %orig;
+    if (!DYYYGetBool(@"DYYYHideBottomRelated")) {
+        // 新添加的子视图也要立即设置透明
+        [self makeAllSubviewsTransparentRecursively:view];
     }
 }
 %end
@@ -3235,6 +3251,14 @@ static AWEIMReusableCommonCell *currentCell;
         %orig([UIColor clearColor]);
     } else {
         %orig(color);
+    }
+}
+
+- (void)addSubview:(UIView *)view {
+    %orig;
+    if (!DYYYGetBool(@"DYYYHidePauseVideoRelatedWord")) {
+        // 新添加的子视图也要立即设置透明
+        [self makeAllSubviewsTransparentRecursively:view];
     }
 }
 %end
