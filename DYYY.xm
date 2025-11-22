@@ -2543,42 +2543,47 @@ static AWEIMReusableCommonCell *currentCell;
 
 // 移除下面推荐框黑条
 %hook AWEPlayInteractionRelatedVideoView
+
+// 递归设置所有子视图透明
+%new
+- (void)makeAllSubviewsTransparentRecursively:(UIView *)view {
+    if (!view) return;
+
+    // 设置当前视图透明
+    view.backgroundColor = [UIColor clearColor];
+
+    // 处理 UIVisualEffectView
+    if ([view isKindOfClass:[UIVisualEffectView class]]) {
+        view.alpha = 0;
+    }
+
+    // 递归处理所有子视图
+    for (UIView *subview in view.subviews) {
+        [self makeAllSubviewsTransparentRecursively:subview];
+    }
+}
+
 - (void)layoutSubviews {
     %orig;
     if (DYYYGetBool(@"DYYYHideBottomRelated")) {
         [self removeFromSuperview];
     } else {
-        // 设置背景为透明
+        // 设置自身背景为透明
         self.backgroundColor = [UIColor clearColor];
 
-        // 遍历所有子视图，将背景设置为透明
-        for (UIView *subview in self.subviews) {
-            if ([subview isKindOfClass:[UIView class]]) {
-                subview.backgroundColor = [UIColor clearColor];
-            }
-            // 如果是 UIVisualEffectView，也设置为透明
-            if ([subview isKindOfClass:[UIVisualEffectView class]]) {
-                subview.alpha = 0;
-            }
-        }
+        // 递归设置所有子视图透明
+        [self makeAllSubviewsTransparentRecursively:self];
     }
 }
 
 - (void)didMoveToSuperview {
     %orig;
     if (!DYYYGetBool(@"DYYYHideBottomRelated") && self.superview) {
-        // 确保背景透明
+        // 设置自身背景为透明
         self.backgroundColor = [UIColor clearColor];
 
-        // 遍历所有子视图
-        for (UIView *subview in self.subviews) {
-            if ([subview isKindOfClass:[UIView class]]) {
-                subview.backgroundColor = [UIColor clearColor];
-            }
-            if ([subview isKindOfClass:[UIVisualEffectView class]]) {
-                subview.alpha = 0;
-            }
-        }
+        // 递归设置所有子视图透明
+        [self makeAllSubviewsTransparentRecursively:self];
     }
 }
 
@@ -2593,42 +2598,47 @@ static AWEIMReusableCommonCell *currentCell;
 %end
 
 %hook AWEFeedRelatedSearchTipView
+
+// 递归设置所有子视图透明
+%new
+- (void)makeAllSubviewsTransparentRecursively:(UIView *)view {
+    if (!view) return;
+
+    // 设置当前视图透明
+    view.backgroundColor = [UIColor clearColor];
+
+    // 处理 UIVisualEffectView
+    if ([view isKindOfClass:[UIVisualEffectView class]]) {
+        view.alpha = 0;
+    }
+
+    // 递归处理所有子视图
+    for (UIView *subview in view.subviews) {
+        [self makeAllSubviewsTransparentRecursively:subview];
+    }
+}
+
 - (void)layoutSubviews {
     %orig;
     if (DYYYGetBool(@"DYYYHideBottomRelated")) {
         [self removeFromSuperview];
     } else {
-        // 设置背景为透明
+        // 设置自身背景为透明
         self.backgroundColor = [UIColor clearColor];
 
-        // 遍历所有子视图，将背景设置为透明
-        for (UIView *subview in self.subviews) {
-            if ([subview isKindOfClass:[UIView class]]) {
-                subview.backgroundColor = [UIColor clearColor];
-            }
-            // 如果是 UIVisualEffectView，也设置为透明
-            if ([subview isKindOfClass:[UIVisualEffectView class]]) {
-                subview.alpha = 0;
-            }
-        }
+        // 递归设置所有子视图透明
+        [self makeAllSubviewsTransparentRecursively:self];
     }
 }
 
 - (void)didMoveToSuperview {
     %orig;
     if (!DYYYGetBool(@"DYYYHideBottomRelated") && self.superview) {
-        // 确保背景透明
+        // 设置自身背景为透明
         self.backgroundColor = [UIColor clearColor];
 
-        // 遍历所有子视图
-        for (UIView *subview in self.subviews) {
-            if ([subview isKindOfClass:[UIView class]]) {
-                subview.backgroundColor = [UIColor clearColor];
-            }
-            if ([subview isKindOfClass:[UIVisualEffectView class]]) {
-                subview.alpha = 0;
-            }
-        }
+        // 递归设置所有子视图透明
+        [self makeAllSubviewsTransparentRecursively:self];
     }
 }
 
@@ -3175,42 +3185,47 @@ static AWEIMReusableCommonCell *currentCell;
 
 // 暂停视频相关词视图透明化
 %hook AWEFeedPauseVideoRelatedWordView
+
+// 递归设置所有子视图透明
+%new
+- (void)makeAllSubviewsTransparentRecursively:(UIView *)view {
+    if (!view) return;
+
+    // 设置当前视图透明
+    view.backgroundColor = [UIColor clearColor];
+
+    // 处理 UIVisualEffectView
+    if ([view isKindOfClass:[UIVisualEffectView class]]) {
+        view.alpha = 0;
+    }
+
+    // 递归处理所有子视图
+    for (UIView *subview in view.subviews) {
+        [self makeAllSubviewsTransparentRecursively:subview];
+    }
+}
+
 - (void)layoutSubviews {
     %orig;
     if (DYYYGetBool(@"DYYYHidePauseVideoRelatedWord")) {
         [self removeFromSuperview];
     } else {
-        // 设置背景为透明
+        // 设置自身背景为透明
         self.backgroundColor = [UIColor clearColor];
 
-        // 遍历所有子视图，将背景设置为透明
-        for (UIView *subview in self.subviews) {
-            if ([subview isKindOfClass:[UIView class]]) {
-                subview.backgroundColor = [UIColor clearColor];
-            }
-            // 如果是 UIVisualEffectView，也设置为透明
-            if ([subview isKindOfClass:[UIVisualEffectView class]]) {
-                subview.alpha = 0;
-            }
-        }
+        // 递归设置所有子视图透明
+        [self makeAllSubviewsTransparentRecursively:self];
     }
 }
 
 - (void)didMoveToSuperview {
     %orig;
     if (!DYYYGetBool(@"DYYYHidePauseVideoRelatedWord") && self.superview) {
-        // 确保背景透明
+        // 设置自身背景为透明
         self.backgroundColor = [UIColor clearColor];
 
-        // 遍历所有子视图
-        for (UIView *subview in self.subviews) {
-            if ([subview isKindOfClass:[UIView class]]) {
-                subview.backgroundColor = [UIColor clearColor];
-            }
-            if ([subview isKindOfClass:[UIVisualEffectView class]]) {
-                subview.alpha = 0;
-            }
-        }
+        // 递归设置所有子视图透明
+        [self makeAllSubviewsTransparentRecursively:self];
     }
 }
 
