@@ -63,6 +63,14 @@ clean::
 	@echo -e "\033[31m==>\033[0m Cleaning packages…"
 	@rm -rf .theos packages
 
+# 编译后签名（支持 TrollStore）
+after-build::
+	@echo -e "\033[36m==>\033[0m Signing with ldid for TrollStore compatibility…"
+	@if [ -f "$(THEOS_OBJ_DIR)/DYYY.dylib" ]; then \
+		ldid -S$(THEOS_PROJECT_DIR)/entitlements.xml $(THEOS_OBJ_DIR)/DYYY.dylib; \
+		echo -e "\033[32m==>\033[0m Signed successfully"; \
+	fi
+
 # 编译并自动安装
 after-package::
 	@echo -e "\033[32m==>\033[0m Packaging complete."

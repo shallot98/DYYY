@@ -2556,6 +2556,16 @@ static AWEIMReusableCommonCell *currentCell;
     %orig;
     if (DYYYGetBool(@"DYYYHideBottomRelated")) {
         [self removeFromSuperview];
+    } else {
+        // 设置背景为透明
+        self.backgroundColor = [UIColor clearColor];
+
+        // 遍历所有子视图，将灰色背景改为透明
+        for (UIView *subview in self.subviews) {
+            if (subview.backgroundColor) {
+                subview.backgroundColor = [UIColor clearColor];
+            }
+        }
     }
 }
 %end

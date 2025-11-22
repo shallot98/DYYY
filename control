@@ -1,12 +1,12 @@
 Package: com.huami.dyyy
 Name: DYYY
 Version: 2.2-8
-Description: 仅供学习交流，请在 24 小时内自觉删除。
+Description: 仅供学习交流，请在 24 小时内自觉删除。支持 iOS 16 无越狱环境（TrollStore）
 Homepage: https://github.com/huami1314/DYYY
 Section: Tweaks
-Depends: firmware (>= 5.0), mobilesubstrate
+Depends: firmware (>= 11.0)
 Priority: optional
 Maintainer: huami
 Author: huami
-Architecture: iphoneos-arm
+Architecture: iphoneos-arm64
 Icon: https://Mieing.Github.io/repo/file/TikTok.png
