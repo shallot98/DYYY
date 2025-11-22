@@ -2547,6 +2547,47 @@ static AWEIMReusableCommonCell *currentCell;
     %orig;
     if (DYYYGetBool(@"DYYYHideBottomRelated")) {
         [self removeFromSuperview];
+    } else {
+        // 设置背景为透明
+        self.backgroundColor = [UIColor clearColor];
+
+        // 遍历所有子视图，将背景设置为透明
+        for (UIView *subview in self.subviews) {
+            if ([subview isKindOfClass:[UIView class]]) {
+                subview.backgroundColor = [UIColor clearColor];
+            }
+            // 如果是 UIVisualEffectView，也设置为透明
+            if ([subview isKindOfClass:[UIVisualEffectView class]]) {
+                subview.alpha = 0;
+            }
+        }
+    }
+}
+
+- (void)didMoveToSuperview {
+    %orig;
+    if (!DYYYGetBool(@"DYYYHideBottomRelated") && self.superview) {
+        // 确保背景透明
+        self.backgroundColor = [UIColor clearColor];
+
+        // 遍历所有子视图
+        for (UIView *subview in self.subviews) {
+            if ([subview isKindOfClass:[UIView class]]) {
+                subview.backgroundColor = [UIColor clearColor];
+            }
+            if ([subview isKindOfClass:[UIVisualEffectView class]]) {
+                subview.alpha = 0;
+            }
+        }
+    }
+}
+
+- (void)setBackgroundColor:(UIColor *)color {
+    if (!DYYYGetBool(@"DYYYHideBottomRelated")) {
+        // 强制设置为透明，忽略原始颜色
+        %orig([UIColor clearColor]);
+    } else {
+        %orig(color);
     }
 }
 %end
@@ -3130,6 +3171,57 @@ static AWEIMReusableCommonCell *currentCell;
     }
 }
 
+%end
+
+// 暂停视频相关词视图透明化
+%hook AWEFeedPauseVideoRelatedWordView
+- (void)layoutSubviews {
+    %orig;
+    if (DYYYGetBool(@"DYYYHidePauseVideoRelatedWord")) {
+        [self removeFromSuperview];
+    } else {
+        // 设置背景为透明
+        self.backgroundColor = [UIColor clearColor];
+
+        // 遍历所有子视图，将背景设置为透明
+        for (UIView *subview in self.subviews) {
+            if ([subview isKindOfClass:[UIView class]]) {
+                subview.backgroundColor = [UIColor clearColor];
+            }
+            // 如果是 UIVisualEffectView，也设置为透明
+            if ([subview isKindOfClass:[UIVisualEffectView class]]) {
+                subview.alpha = 0;
+            }
+        }
+    }
+}
+
+- (void)didMoveToSuperview {
+    %orig;
+    if (!DYYYGetBool(@"DYYYHidePauseVideoRelatedWord") && self.superview) {
+        // 确保背景透明
+        self.backgroundColor = [UIColor clearColor];
+
+        // 遍历所有子视图
+        for (UIView *subview in self.subviews) {
+            if ([subview isKindOfClass:[UIView class]]) {
+                subview.backgroundColor = [UIColor clearColor];
+            }
+            if ([subview isKindOfClass:[UIVisualEffectView class]]) {
+                subview.alpha = 0;
+            }
+        }
+    }
+}
+
+- (void)setBackgroundColor:(UIColor *)color {
+    if (!DYYYGetBool(@"DYYYHidePauseVideoRelatedWord")) {
+        // 强制设置为透明，忽略原始颜色
+        %orig([UIColor clearColor]);
+    } else {
+        %orig(color);
+    }
+}
 %end
 
 // 隐藏短剧合集
