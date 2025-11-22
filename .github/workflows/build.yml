@@ -27,6 +27,10 @@ jobs:
       - name: Prepare Theos
         uses: huami1314/theos-action@main
 
+      - name: Setup Theos Environment
+        run: |
+          echo "THEOS=${GITHUB_WORKSPACE}/theos" >> $GITHUB_ENV
+
       - name: Setup GNU Make
         run: |
           echo "$(brew --prefix)/opt/make/libexec/gnubin" >> $GITHUB_PATH
