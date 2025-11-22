@@ -2542,6 +2542,10 @@ static AWEIMReusableCommonCell *currentCell;
 %end
 
 // 移除下面推荐框黑条
+@interface AWEPlayInteractionRelatedVideoView : UIView
+- (void)makeAllSubviewsTransparentRecursively:(UIView *)view;
+@end
+
 %hook AWEPlayInteractionRelatedVideoView
 
 // 递归设置所有子视图透明
@@ -2602,13 +2606,17 @@ static AWEIMReusableCommonCell *currentCell;
         // 新添加的子视图也要立即设置透明
         [self makeAllSubviewsTransparentRecursively:view];
     }
-}
-%end
 
-%hook AWEFeedRelatedSearchTipView
+    %end
 
-// 递归设置所有子视图透明
-%new
+    @interface AWEFeedRelatedSearchTipView : UIView
+    - (void)makeAllSubviewsTransparentRecursively:(UIView *)view;
+    @end
+
+    %hook AWEFeedRelatedSearchTipView
+
+    // 递归设置所有子视图透明
+    %new
 - (void)makeAllSubviewsTransparentRecursively:(UIView *)view {
     if (!view) return;
 
@@ -3200,6 +3208,10 @@ static AWEIMReusableCommonCell *currentCell;
 %end
 
 // 暂停视频相关词视图透明化
+@interface AWEFeedPauseVideoRelatedWordView : UIView
+- (void)makeAllSubviewsTransparentRecursively:(UIView *)view;
+@end
+
 %hook AWEFeedPauseVideoRelatedWordView
 
 // 递归设置所有子视图透明
