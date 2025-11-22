@@ -2606,17 +2606,18 @@ static AWEIMReusableCommonCell *currentCell;
         // 新添加的子视图也要立即设置透明
         [self makeAllSubviewsTransparentRecursively:view];
     }
+}
 
-    %end
+%end
 
-    @interface AWEFeedRelatedSearchTipView : UIView
-    - (void)makeAllSubviewsTransparentRecursively:(UIView *)view;
-    @end
+@interface AWEFeedRelatedSearchTipView : UIView
+- (void)makeAllSubviewsTransparentRecursively:(UIView *)view;
+@end
 
-    %hook AWEFeedRelatedSearchTipView
+%hook AWEFeedRelatedSearchTipView
 
-    // 递归设置所有子视图透明
-    %new
+// 递归设置所有子视图透明
+%new
 - (void)makeAllSubviewsTransparentRecursively:(UIView *)view {
     if (!view) return;
 
